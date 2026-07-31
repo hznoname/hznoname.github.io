@@ -15,103 +15,185 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
 
-    background:linear-gradient(180deg,#090909,#171717);
-
     min-height:100vh;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
+    background:
+    radial-gradient(circle at top,#ff4dc433 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#72ff0033 0%,transparent 30%),
+    #080808;
+
     color:white;
+
+    overflow:hidden;
+
+}
+
+/* Grade no fundo */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+background-size:45px 45px;
+
+mask-image:linear-gradient(black,transparent);
+
+pointer-events:none;
+
+}
+
+/* Bolhas de luz */
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:700px;
+
+height:700px;
+
+background:
+
+radial-gradient(circle,#ff4dc444 0%,transparent 60%);
+
+top:-250px;
+
+left:-150px;
+
+filter:blur(80px);
+
+pointer-events:none;
 
 }
 
 .container{
 
-    width:100%;
-    max-width:420px;
+width:420px;
 
-    text-align:center;
+padding:35px;
 
-    padding:20px;
+border-radius:28px;
+
+background:rgba(18,18,18,.70);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:
+
+0 0 45px rgba(255,0,150,.2);
+
+text-align:center;
+
+position:relative;
+
+z-index:5;
 
 }
 
+/* Avatar */
+
 .avatar{
 
-    width:170px;
-    height:170px;
+width:170px;
 
-    margin:auto;
+height:170px;
 
-    border-radius:50%;
+margin:auto;
 
-    padding:5px;
+padding:5px;
 
-    background:linear-gradient(
-        45deg,
-        #00d9ff,
-        #6c63ff,
-        #ff00ff,
-        #00d9ff
-    );
+border-radius:50%;
 
-    background-size:300%;
+background:linear-gradient(
+45deg,
+#ff5ad8,
+#73ff00,
+#ff5ad8);
 
-    animation:rainbow 5s linear infinite;
+background-size:300%;
 
-    box-shadow:
-    0 0 15px #00d9ff,
-    0 0 35px #7b2fff;
+animation:rainbow 5s linear infinite;
+
+box-shadow:
+
+0 0 25px #ff5ad8,
+
+0 0 45px #73ff00;
 
 }
 
 .avatar img{
 
-    width:100%;
-    height:100%;
+width:100%;
 
-    border-radius:50%;
+height:100%;
 
-    object-fit:cover;
+object-fit:cover;
 
-    display:block;
+border-radius:50%;
+
+display:block;
 
 }
 
 @keyframes rainbow{
 
-0%{
-background-position:0%;
-}
+0%{background-position:0%;}
 
-100%{
-background-position:300%;
-}
+100%{background-position:300%;}
 
 }
+
+/* Nome */
 
 h1{
 
-    margin-top:25px;
-    font-size:46px;
+margin-top:25px;
+
+font-size:46px;
+
+background:linear-gradient(90deg,#ffffff,#ff6bd9,#73ff00);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 
 }
+
+/* Bio */
 
 p{
 
-    margin:15px 0 35px;
-    color:#bdbdbd;
+margin:12px 0 30px;
+
+color:#c9c9c9;
 
 }
+
+/* Botões */
 
 .link{
 
@@ -121,55 +203,105 @@ justify-content:center;
 
 align-items:center;
 
-width:100%;
+gap:12px;
 
-height:60px;
+height:62px;
 
 margin:18px 0;
 
-text-decoration:none;
+border-radius:18px;
 
-color:white;
+background:#121212;
+
+border:2px solid #ff5ad8;
+
+text-decoration:none;
 
 font-size:20px;
 
-font-weight:bold;
+font-weight:700;
 
-border-radius:16px;
+color:white;
 
-background:#202020;
-
-border:2px solid #2f89ff;
+transition:.25s;
 
 box-shadow:
 
-0 0 10px rgba(47,137,255,.35);
-
-transition:.25s;
+0 0 15px rgba(255,90,216,.25);
 
 }
 
 .link:hover{
 
-transform:translateY(-3px) scale(1.02);
+transform:translateY(-4px);
 
-background:#2f89ff;
+border-color:#73ff00;
 
 box-shadow:
 
-0 0 20px #2f89ff,
+0 0 20px #ff5ad8,
 
-0 0 45px rgba(47,137,255,.7);
+0 0 35px #73ff00;
 
 }
 
+/* Rodapé */
+
 .footer{
 
-margin-top:30px;
-
-color:#666;
+margin-top:25px;
 
 font-size:13px;
+
+color:#777;
+
+}
+
+/* Fantasminhos */
+
+.ghost{
+
+position:absolute;
+
+font-size:28px;
+
+opacity:.18;
+
+animation:float 5s ease-in-out infinite;
+
+}
+
+.g1{
+
+top:20px;
+
+left:25px;
+
+}
+
+.g2{
+
+bottom:25px;
+
+right:20px;
+
+animation-delay:2s;
+
+}
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
 
 }
 
@@ -181,8 +313,14 @@ font-size:13px;
 
 <div class="container">
 
+<div class="ghost g1">👻</div>
+
+<div class="ghost g2">👻</div>
+
 <div class="avatar">
-<img src="images/avatar.png" alt="Avatar">
+
+<img src="images/avatar.png">
+
 </div>
 
 <h1>HZ_N0Name</h1>
@@ -206,7 +344,9 @@ font-size:13px;
 </a>
 
 <div class="footer">
-Feito com ❤️ por HZ_N0Name
+
+💖 Obrigado pela visita!
+
 </div>
 
 </div>
